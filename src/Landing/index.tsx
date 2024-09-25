@@ -1,4 +1,3 @@
-import { Routes, Route, Navigate } from "react-router";
 import { Link } from "react-router-dom";
 import TOC from "../Labs/TOC";
 export default function Landing() {
