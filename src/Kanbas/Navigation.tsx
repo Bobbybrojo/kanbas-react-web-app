@@ -35,6 +35,10 @@ export default function KanbasNavigation() {
         Labs
       </Link>
       <br />
+      <Link to="/" id="wd-landing-link">
+        Back To Landing
+      </Link>
+      <br />
     </div>
   );
 }

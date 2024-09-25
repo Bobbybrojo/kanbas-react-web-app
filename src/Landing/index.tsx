@@ -12,7 +12,7 @@ export default function Landing() {
 
       <h3>Link to Github Repo:</h3>
       <Link
-        to={{ pathname: "https://www.example.com" }}
+        to={"https://github.com/Bobbybrojo/kanbas-react-web-app"}
         target="_blank"
         rel="noopener noreferrer"
       >
