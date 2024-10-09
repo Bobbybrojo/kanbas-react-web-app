@@ -3,7 +3,7 @@ import TOC from "../Labs/TOC";
 export default function Landing() {
   return (
     <>
-      <h1>Assignment 1 Landing Page</h1>
+      <h1>Assignment 2 Landing Page</h1>
       <h3>Name: Roberto Rojo</h3>
       <h3>Section: 01</h3>
       <div>
