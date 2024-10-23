@@ -1,9 +1,21 @@
+import { useParams } from "react-router";
+import * as db from "../../Database";
+import { Link } from "react-router-dom";
+
 export default function AssignmentEditor() {
+  const { cid, aid } = useParams();
+  const assignments = db.assignments;
+  let assignment = { title: "None" };
+  assignments.forEach((elem) => {
+    if (elem._id === aid) {
+      assignment = elem;
+    }
+  });
   return (
     <div className="container" id="wd-assignments-editor">
       <div className="row">
         <label htmlFor="wd-name">Assignment Name</label>
-        <input className="form-control" id="wd-name" value="A1 - ENV + HTML" />
+        <input className="form-control" id="wd-name" value={assignment.title} />
       </div>
       <textarea className="form-control float-end" id="wd-description">
         The assignment is available online Submit a link to the landing page of
@@ -164,8 +176,18 @@ export default function AssignmentEditor() {
         </div>
         <hr />
         <div>
-          <button className="btn float-end">Cancel</button>
-          <button className="btn btn-primary float-end">Save</button>
+          <Link
+            to={`/Kanbas/Courses/${cid}/Assignments`}
+            className="btn float-end"
+          >
+            Cancel
+          </Link>
+          <Link
+            to={`/Kanbas/Courses/${cid}/Assignments`}
+            className="btn btn-primary float-end"
+          >
+            Save
+          </Link>
         </div>
       </div>
     </div>
