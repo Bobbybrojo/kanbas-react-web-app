@@ -1,21 +1,44 @@
 import { useParams } from "react-router";
 import * as db from "../../Database";
 import { Link } from "react-router-dom";
+import { addAssignment } from "./reducer";
+import { useSelector, useDispatch } from "react-redux";
+import { useState } from "react";
 
 export default function AssignmentEditor() {
   const { cid, aid } = useParams();
-  const assignments = db.assignments;
-  let assignment = { title: "None" };
-  assignments.forEach((elem) => {
+  const { assignments } = useSelector((state: any) => state.assignmentReducer);
+  const dispatch = useDispatch();
+
+  const [assignment, setAssignment] = useState({
+    title: "None",
+    course: cid,
+    _id: aid,
+  });
+  assignments.forEach((elem: any) => {
     if (elem._id === aid) {
-      assignment = elem;
+      setAssignment(elem);
     }
   });
+
+  const changeName = (e: any) => {
+    setAssignment({
+      title: e.target.value,
+      course: assignment.course,
+      _id: assignment._id,
+    });
+  };
+
   return (
     <div className="container" id="wd-assignments-editor">
       <div className="row">
         <label htmlFor="wd-name">Assignment Name</label>
-        <input className="form-control" id="wd-name" value={assignment.title} />
+        <input
+          className="form-control"
+          id="wd-name"
+          value={assignment.title}
+          onChange={changeName}
+        />
       </div>
       <textarea className="form-control float-end" id="wd-description">
         The assignment is available online Submit a link to the landing page of
@@ -185,6 +208,16 @@ export default function AssignmentEditor() {
           <Link
             to={`/Kanbas/Courses/${cid}/Assignments`}
             className="btn btn-primary float-end"
+            onClick={() => {
+              dispatch(
+                addAssignment({
+                  title: assignment.title,
+                  course: cid,
+                  _id: assignment._id,
+                })
+              );
+              setAssignment({ title: "None", course: cid, _id: "000" });
+            }}
           >
             Save
           </Link>
