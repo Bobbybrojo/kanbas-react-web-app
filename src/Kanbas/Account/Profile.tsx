@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setCurrentUser } from "./reducer";
 import * as client from "./client";
+import Users from "./Users";
 
 export default function Profile() {
   const [profile, setProfile] = useState<any>({});
@@ -102,6 +103,7 @@ export default function Profile() {
           </button>
         </div>
       )}
+      <Users />
     </div>
   );
 }
